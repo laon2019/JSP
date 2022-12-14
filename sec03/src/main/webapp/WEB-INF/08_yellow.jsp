@@ -6,11 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-<jsp:include page="header.jsp"/>
-
-<h3>메인페이지</h3>
-<a href="08_sub.jsp">서브페이지</a><br>
-<%@ include file="footer.jsp" %>
+<body bgcolor="yellow">
+<h3>forward 액션테그 예제</h3>
+<hr>
+이 파일은 yellow.jsp입니다.
 </body>
 </html>

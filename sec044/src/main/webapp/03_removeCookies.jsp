@@ -7,10 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
-
-<h3>메인페이지</h3>
-<a href="08_sub.jsp">서브페이지</a><br>
-<%@ include file="footer.jsp" %>
+<% 
+	Cookie cookie = new Cookie("id","");
+	cookie.setMaxAge(0);
+	response.addCookie(cookie);
+%>
+<h1>쿠키가 삭제되었습니다.</h1>
+<a href="02_getCookies.jsp">삭제 후 쿠키 확인</a>
 </body>
 </html>

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
 <h3>메인페이지</h3>
 <a href="08_main.jsp">서브페이지</a><br>
 <%@ include file="footer.jsp" %>

@@ -7,10 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
-
-<h3>메인페이지</h3>
-<a href="08_sub.jsp">서브페이지</a><br>
-<%@ include file="footer.jsp" %>
+<h1>클라이언트로 부터 얻어온 Cookie</h1>
+<%
+Cookie[] cookies = request.getCookies();
+for(Cookie c : cookies){
+	out.println(c.getName()+" : "+c.getValue()+"<br>");
+}
+%>
 </body>
 </html>
