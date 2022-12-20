@@ -14,3 +14,41 @@
 	}
 	return true;
 }
+
+function idCheck(){
+	if(document.frm.userid.value ==""){
+		alert("아이디를 입력해주세요");
+		document.frm.userid.focus();
+		return false;
+	}
+	var url = "idCheck.do?userid=" + document.frm.userid.value;
+	window.open(url, "_blank_1",
+		"toolbar=no, menubar=no, scrollbar=yes, resizable=no, width=450, height=200");
+}
+function idok(userid){
+	opener.frm.userid.value = document.frm.userid.value;
+	opener.frm.redi.value = document.frm.userid.value;
+	self.clos();
+}
+function joinCheck(){
+	if(document.frm.name.value.length == 0){
+		alert("이름을 써주세요.");
+		frm.name.focus();
+		return false;
+	}
+	if(document.frm.name.userid.length == 0){
+		alert("이름을 써주세요.");
+		frm.userid.focus();
+		return false;
+	}
+	if(document.frm.name.value.length < 4){
+		alert("이름을 써주세요.");
+		frm.name.focus();
+		return false;
+	}
+	if(document.frm.pwd.value.length == ""){
+		alert("이름을 써주세요.");
+		frm.pwd.focus();
+		return false;
+	}
+}

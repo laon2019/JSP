@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.keduit.dao.MemberDAO;
+import com.keduit.dto.MemberVO;
 
 /**
  * Servlet implementation class LoginServlet
@@ -47,7 +49,12 @@ public class LoginServlet extends HttpServlet {
 		int result = mDAO.userCheck(userid, pwd);
 		
 		if(result==1) {
-			request.setAttribute("message", "로그인 성공!");
+			MemberVO mVO = mDAO.getMember(userid);
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", mVO);
+			request.setAttribute("message", "회원 가입 성공");
+			url = "main.jsp";
+			//request.setAttribute("message", "로그인 성공!");
 		}else if(result ==0) {
 			request.setAttribute("message", "비밀번호가 틀립니다.");
 		} else if(result == -1) {
