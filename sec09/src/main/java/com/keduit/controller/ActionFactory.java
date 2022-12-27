@@ -2,6 +2,8 @@ package com.keduit.controller;
 
 import com.keduit.controller.action.Action;
 import com.keduit.controller.action.BoardListAction;
+import com.keduit.controller.action.BoardViewAction;
+import com.keduit.controller.action.BoardWriteAction;
 import com.keduit.controller.action.BoardWriteFormAction;
 
 public class ActionFactory {
@@ -23,7 +25,13 @@ public class ActionFactory {
 			action = new BoardListAction();
 		} else if(command.equals("board_write_form")) {
 			action = new BoardWriteFormAction();
-		}
+		} else if(command.equals("board_write")) {
+			action = new BoardWriteAction();
+		} else if(command.equals("board_view")) {
+			action = new BoardViewAction();
+		} else if(command.equals("board_check_pass_form")) {
+			action = new BoardCheckPassFormAction();
+		} 
 		return action;
 	}
 }
