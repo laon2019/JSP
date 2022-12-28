@@ -143,4 +143,19 @@ public class BoardDAO {
 			DBManager.close(conn, pstmt);
 		}
 	}
+	public void deleteBoard(String num) {
+		String sql ="delete from board where where num=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+	}
 }

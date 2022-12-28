@@ -1,7 +1,11 @@
 package com.keduit.controller;
 
 import com.keduit.controller.action.Action;
+import com.keduit.controller.action.BoardCheckPassAction;
+import com.keduit.controller.action.BoardDeleteAction;
 import com.keduit.controller.action.BoardListAction;
+import com.keduit.controller.action.BoardUpdateAction;
+import com.keduit.controller.action.BoardUpdateFormAction;
 import com.keduit.controller.action.BoardViewAction;
 import com.keduit.controller.action.BoardWriteAction;
 import com.keduit.controller.action.BoardWriteFormAction;
@@ -31,7 +35,15 @@ public class ActionFactory {
 			action = new BoardViewAction();
 		} else if(command.equals("board_check_pass_form")) {
 			action = new BoardCheckPassFormAction();
-		} 
+		} else if(command.equals("board_check_pass")) {
+			action = new BoardCheckPassAction();
+		} else if(command.equals("board_update")) {
+			action = new BoardUpdateAction();
+		} else if(command.equals("board_update_form")) {
+			action = new BoardUpdateFormAction();
+		} else if(command.equals("board_delete")) {
+			action = new BoardDeleteAction();
+		}
 		return action;
 	}
 }

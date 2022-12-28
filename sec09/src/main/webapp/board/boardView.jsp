@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
+<script type="text/javascript" src="script/board.js"></script>
 </head>
 <body>
 <div id="wrap" align="center">

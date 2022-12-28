@@ -7,8 +7,17 @@
 <title>비밀번호 확인</title>
 </head>
 <body>
-<form action>
+<script>
+if(window.name == "update"){
+	window.opener.parent.location.href = "BoardServlet?command=board_update_form&num=${param.num}";
+	
+}else if(window.name == "delete"){
+	alert('삭제되었습니다.');
+	window.opener.parent.location.href = "BoardServlet?command=board_delete&num=${param.num}";
+}
+window.close();
+</script>
 
-</form>
+
 </body>
 </html>
