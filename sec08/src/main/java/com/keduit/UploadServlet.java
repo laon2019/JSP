@@ -1,6 +1,5 @@
 package com.keduit;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -13,11 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.oreilly.servlet.multipart.FileRenamePolicy;
 
-/**
- * Servlet implementation class UploadServlet
- */
 @WebServlet("/upload.do")
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,8 +22,9 @@ public class UploadServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		String savePath = "upload";
-		//최대 파일 크기
+		String savePath = "upload"; 
+		
+		//최대 업로드 파일 크기 (5MB)
 		int uploadFileSizeLimit = 5 * 1024 * 1024;
 		
 		String encType="UTF-8";
@@ -39,17 +35,22 @@ public class UploadServlet extends HttpServlet {
 		System.out.println(uploadFilePath);
 		
 		try {
-			MultipartRequest multi = new MultipartRequest(request, uploadFilePath, uploadFileSizeLimit, encType, new DefaultFileRenamePolicy());
-			//업로드 된 파일의 이름을 가져옴
+			MultipartRequest multi = new MultipartRequest(
+					request, 
+					uploadFilePath, 
+					uploadFileSizeLimit, 
+					encType,
+					new DefaultFileRenamePolicy());
+			
 			String fileName = multi.getFilesystemName("uploadFile");
 			if(fileName == null) {
-				System.out.println("파일이 업로드 되지 않았습니다.");
-			} else {
+				System.out.println("파일이 업로드 되지 않았음.");
+			}else {
 				out.println("<br> 글쓴이 : " + multi.getParameter("name"));
 				out.println("<br> 제목 : " + multi.getParameter("title"));
-				out.println("<br> 파일명 : " + fileName);		
+				out.println("<br> 파일명 : " + fileName);
 			}
-		}catch (Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}

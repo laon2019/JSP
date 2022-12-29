@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<script>location.href="login.jsp"</script>
+<% response.sendRedirect("http://localhost:8080/test1/BoardServlet?command=board_list"); %>
 </body>
 </html>

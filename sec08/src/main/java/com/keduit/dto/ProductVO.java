@@ -1,15 +1,20 @@
 package com.keduit.dto;
 
 public class ProductVO {
-	private int code;
+	private Integer code;
 	private String name;
-	private int price;
-	private String description;
+	private Integer price;
 	private String pictureurl;
-	public int getCode() {
+	private String description;
+	@Override
+	public String toString() {
+		return "ProductVO [code=" + code + ", name=" + name + ", price=" + price + ", pictureurl=" + pictureurl
+				+ ", description=" + description + "]";
+	}
+	public Integer getCode() {
 		return code;
 	}
-	public void setCode(int code) {
+	public void setCode(Integer code) {
 		this.code = code;
 	}
 	public String getName() {
@@ -18,17 +23,11 @@ public class ProductVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
 	}
 	public String getPictureurl() {
 		return pictureurl;
@@ -36,11 +35,10 @@ public class ProductVO {
 	public void setPictureurl(String pictureurl) {
 		this.pictureurl = pictureurl;
 	}
-	@Override
-	public String toString() {
-		return "ProductVO [code=" + code + ", name=" + name + ", price=" + price + ", description=" + description
-				+ ", pictureurl=" + pictureurl + "]";
+	public String getDescription() {
+		return description;
 	}
-	
-	
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }

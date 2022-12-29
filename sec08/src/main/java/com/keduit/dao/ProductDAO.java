@@ -12,16 +12,17 @@ import util.DBManager;
 
 public class ProductDAO {
 	private ProductDAO() {
-	}
+}
 	
 	private static ProductDAO instance = new ProductDAO();
 	
 	public static ProductDAO getInstance() {
 		return instance;
+
 	}
-	
-	public List<ProductVO> selectAllProducts() {
-		String sql = "select * from product order by code desc";
+	// 상품 목록
+	public List<ProductVO> selectAllProducts(){
+		String sql = "select * from product order by code desc"; 
 		List<ProductVO> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -30,9 +31,8 @@ public class ProductDAO {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			ProductVO pVO;
 			while(rs.next()) {
-				pVO = new ProductVO();
+				ProductVO pVO = new ProductVO();
 				pVO.setCode(rs.getInt("code"));
 				pVO.setName(rs.getString("name"));
 				pVO.setPrice(rs.getInt("price"));
@@ -40,68 +40,75 @@ public class ProductDAO {
 				pVO.setDescription(rs.getString("description"));
 				list.add(pVO);
 			}
-		}catch (Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DBManager.close(conn, pstmt, rs);
 		}
 		
-		
 		return list;
 	}
+	
+	//상품 등록
 	public void insertProduct(ProductVO pVO) {
-		String sql = "insert into product values(null, ?, ?, ?, ?)";
+		String sql = "insert into product values (null, ?, ?, ?, ?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, pVO.getName());
+			pstmt.setString(1,pVO.getName());
 			pstmt.setInt(2, pVO.getPrice());
 			pstmt.setString(3, pVO.getPictureurl());
 			pstmt.setString(4, pVO.getDescription());
-			pstmt.execute();
-		}catch (Exception e) {
+			pstmt.executeUpdate();
+		} catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			DBManager.close(conn, pstmt);
 		}
-		
 	}
 	
+	
+	// code로 상품 하나 읽어오기
 	public ProductVO selectProductByCode(String code) {
 		ProductVO pVO = null;
-		String sql = "select * from product where code=?";
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, code);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				pVO = new ProductVO();
-				pVO.setCode(Integer.parseInt(code));
-				pVO.setName(rs.getString("name"));
-				pVO.setPrice(rs.getInt("price"));
-				pVO.setPictureurl(rs.getString("pictureurl"));
-				pVO.setDescription(rs.getString("description"));
+		String sql = "select * from product where code = ?"; 
+		try { // 이 try는 크게 의미 없지만 한번 해보기
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				conn = DBManager.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, code);
+				rs=pstmt.executeQuery();
+				if(rs.next()) {
+					pVO = new ProductVO();
+					pVO.setCode(rs.getInt("code"));
+					pVO.setName(rs.getString("name"));
+					pVO.setPrice(rs.getInt("price"));
+					pVO.setPictureurl(rs.getString("pictureurl"));
+					pVO.setDescription(rs.getString("description"));
+					
+				}
+			} catch(Exception e){
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt, rs);
 			}
-		}catch (Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
-		}finally {
-			DBManager.close(conn, pstmt, rs);
 		}
 		return pVO;
+		
 	}
 	
 	public void updateProduct(ProductVO pVO) {
 		String sql = "update product set name=?, price=?, pictureurl=?, description=? where code=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		
 		try {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -110,27 +117,33 @@ public class ProductDAO {
 			pstmt.setString(3, pVO.getPictureurl());
 			pstmt.setString(4, pVO.getDescription());
 			pstmt.setInt(5, pVO.getCode());
-		}catch (Exception e) {
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+	}
+	
+	
+	//상품 삭제
+	public void deleteProduct(String code) {
+		String sql = "delete from product where code = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, code);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(conn, pstmt);
 		}
 	}
 	
-	public void deleteProduct(String code) {
-		String sql = "delete from product where code=?";
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		
-		try {
-			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, code);
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBManager.close(conn, pstmt);
-		}
-	}
+	
+	
 }

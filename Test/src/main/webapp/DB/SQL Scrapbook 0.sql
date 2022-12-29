@@ -1,9 +1,0 @@
-CREATE TABLE EMPLOYEES(
-	id VARCHAR(10) NOT NULL primary key,
-	pass VARCHAR(10) NOT NULL,
-	NAME VARCHAR(24),
-	lev char(1) DEFAULT 'A',
-	enter DATE,
-	gender CHAR(1) DEFAULT '1',
-	phone VARCHAR(30)
-);

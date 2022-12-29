@@ -12,18 +12,14 @@ import com.keduit.dao.BoardDAO;
 import com.keduit.dto.BoardVO;
 
 public class BoardListAction implements Action{
-
+	
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void excute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/board/boardList.jsp";
-		
 		BoardDAO bDAO = BoardDAO.getInstance();
 		List<BoardVO> boardList = bDAO.selectAllBoards();
 		request.setAttribute("boardList", boardList);
-		System.out.println(request.getAttribute("boardList"));
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
-	}
-	
-}
+		
+	}}

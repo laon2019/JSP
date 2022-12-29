@@ -2,25 +2,26 @@ package com.keduit.controller;
 
 import com.keduit.controller.action.Action;
 import com.keduit.controller.action.BoardCheckPassAction;
-import com.keduit.controller.action.BoardDeleteAction;
+import com.keduit.controller.action.BoardCheckPassFormAction;
 import com.keduit.controller.action.BoardListAction;
 import com.keduit.controller.action.BoardUpdateAction;
 import com.keduit.controller.action.BoardUpdateFormAction;
 import com.keduit.controller.action.BoardViewAction;
 import com.keduit.controller.action.BoardWriteAction;
 import com.keduit.controller.action.BoardWriteFormAction;
+import com.keduit.controller.action.boardDeleteAction;
 
 public class ActionFactory {
 	private static ActionFactory instance = new ActionFactory();
+	
 	private ActionFactory() {
 		super();
 	}
 	
-	
 	public static ActionFactory getInstance() {
 		return instance;
 	}
-
+	
 	public Action getAction(String command) {
 		Action action = null;
 		System.out.println("ActionFactory : " + command);
@@ -42,8 +43,12 @@ public class ActionFactory {
 		} else if(command.equals("board_update_form")) {
 			action = new BoardUpdateFormAction();
 		} else if(command.equals("board_delete")) {
-			action = new BoardDeleteAction();
+			action = new boardDeleteAction();
 		}
 		return action;
+		
 	}
+	
+	
 }
+

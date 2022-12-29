@@ -13,24 +13,26 @@ import com.keduit.dto.BoardVO;
 public class BoardCheckPassAction implements Action {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = null;
+	public void excute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url=null;
 		
-		String num = request.getParameter("num");
-		String pass = request.getParameter("pass");
+		String num=request.getParameter("num");
+		String pass=request.getParameter("pass");
 		
-		BoardDAO bDAO = BoardDAO.getInstance();
-		BoardVO bVO = bDAO.selectOneBoardByNum(num);
-		
+		BoardDAO bDAO=BoardDAO.getInstance();
+		BoardVO bVO=bDAO.selectOneBoardByNum(num);
+		System.out.println(bVO);
 		if(bVO.getPass().equals(pass)) {
-			url = "/board/checkSuccess.jsp";
-		} else {
-			url = "/board/boardCheckPass.jsp";
+			url ="/board/checkSuccess.jsp";
+			
+		}else {
+			url="/board/boardCheckPass.jsp";
 			request.setAttribute("message", "비밀번호가 틀렸습니다.");
 		}
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+
+		RequestDispatcher dispatcher =request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
+			
 	}
 
 }

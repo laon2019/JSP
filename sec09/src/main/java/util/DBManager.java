@@ -10,10 +10,13 @@ import javax.sql.DataSource;
 
 public class DBManager {
 	public static Connection getConnection() {
-		Connection conn = null;
+		Connection conn =null;
+		
+		
 		
 		try {
-			Context initContext = new InitialContext();
+			
+			Context initContext= new InitialContext();
 			Context envContext = (Context)initContext.lookup("java:/comp/env");
 			DataSource ds = (DataSource) envContext.lookup("jdbc/TestDB");
 			conn = ds.getConnection();
@@ -21,24 +24,29 @@ public class DBManager {
 			e.printStackTrace();
 		}
 		return conn;
+		
 	}
 	
 	public static void close(Connection conn, Statement stmt, ResultSet rs) {
 		try {
-			if(rs != null) rs.close();
-			if(stmt != null) stmt.close();
-			if(conn != null) conn.close();
+			rs.close();
+			stmt.close();
+			conn.close();
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+
 	public static void close(Connection conn, Statement stmt) {
 		try {
 			stmt.close();
 			conn.close();
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	
+}
 }

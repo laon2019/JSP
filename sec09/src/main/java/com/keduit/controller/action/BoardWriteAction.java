@@ -9,14 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.keduit.dao.BoardDAO;
 import com.keduit.dto.BoardVO;
 
-public class BoardWriteAction implements Action{
+public class BoardWriteAction implements Action {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardVO bVO = new BoardVO();
-		
+	public void excute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		BoardVO bVO= new BoardVO();
 		bVO.setName(request.getParameter("name"));
 		bVO.setPass(request.getParameter("pass"));
+		
+		System.out.println("BoardWriteAction " + request.getParameter("pass"));
+		
 		bVO.setEmail(request.getParameter("email"));
 		bVO.setTitle(request.getParameter("title"));
 		bVO.setContent(request.getParameter("content"));
@@ -24,7 +26,7 @@ public class BoardWriteAction implements Action{
 		BoardDAO bDAO = BoardDAO.getInstance();
 		bDAO.insertBoard(bVO);
 		
-		new BoardListAction().execute(request, response);
+		new BoardListAction().excute(request, response);
 		
 	}
 

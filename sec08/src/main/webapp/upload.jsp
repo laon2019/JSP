@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>파일 업로드 예제</title>
+<title>파일 업로드 예제 </title>
 </head>
 <body>
- <form action="upload.do" method="post" enctype="multipart/form-data">
- 글쓴이 : <input type="text" name="name"><br>
- 제목 : <input type="text" name="title"><br>
- 파일 지정하기 : <input type="file" name="uploadFile"><br>
- <input type="submit" value="전송"> 
- </form>
+<form action="upload.do" method="POST" enctype="multipart/form-data"> <!-- 파일 업로드 -->
+	글쓴이 : <input type="text" name="name"><br>
+	제목 : <input type="text" name="title"><br>
+	파일 지정하기 : <input type="file" name="uploadFile"><br>
+	<input type="submit" value="전송">	 
+</form>
 </body>
 </html>

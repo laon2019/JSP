@@ -3,15 +3,8 @@ package com.keduit.dto;
 import java.sql.Timestamp;
 
 public class BoardVO {
-	private int num;
-	private String pass;
-	private String name;
-	private String email;
-	private String title;
-	private String content;
-	private int readcount;
-	private Timestamp writedate;
 	
+	private int	num; 
 	public int getNum() {
 		return num;
 	}
@@ -60,10 +53,16 @@ public class BoardVO {
 	public void setWritedate(Timestamp writedate) {
 		this.writedate = writedate;
 	}
+	private String pass;
+	private String name; 
+	private String email;
+	private String title;
+	private String content; 
+	private int readcount; 
+	private Timestamp writedate;
 	@Override
 	public String toString() {
-		return "boardVO [num=" + num + ", pass=" + pass + ", name=" + name + ", email=" + email + ", title=" + title
+		return "BoardVO [num=" + num + ", pass=" + pass + ", name=" + name + ", email=" + email + ", title=" + title
 				+ ", content=" + content + ", readcount=" + readcount + ", writedate=" + writedate + "]";
+	} 
 	}
-	
-}
