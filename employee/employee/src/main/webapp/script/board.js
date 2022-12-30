@@ -1,10 +1,10 @@
 /**
  * 
  */
-function boardCheck() {
-	if (document.frm.name.value.length == 0) {
-		alert("작성자를 입력하세요.");
-		frm.name.focus();
+function employeeCheck() {
+	if (document.frm.id.value.length == 0) {
+		alert("아이디를 입력하세요.");
+		frm.id.focus();
 		return false;
 	}
 
@@ -13,12 +13,15 @@ function boardCheck() {
 		frm.pass.focus();
 		return false;
 	}
-	if (document.frm.title.value.length == 0) {
-		alert("제목을 입력하세요.")
-		frm.title.focus();
+	if (document.frm.name.value.length == 0) {
+		alert("이름을 입력하세요.");
+		frm.name.focus();
 		return false;
-
 	}
+	
+	
+
+	
 	return true;
 	
 }

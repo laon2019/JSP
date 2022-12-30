@@ -1,0 +1,73 @@
+@charset "UTF-8";
+body {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    background-color: #a7a5a5;
+    min-height: 100%;
+}
+#wrap {
+	width : 971px;
+	margin : 0;
+	margin-left : auto;
+	margin-right: auto;
+}
+table th, td{
+	border: #fff solid 1px; 
+	padding : 5px;
+	text-align : center;
+	
+}
+.list-title {
+    padding: 2rem;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 5rem;
+    background-color: #50504f;
+    border-bottom: 2px solid black;
+    border-radius: 5px;
+}
+table{
+	width : 100%;
+	border-collapse: collapse;
+	font-size : 12px;
+	line-height :24px;
+}
+
+.list{
+	text-align : center;
+	
+}
+
+
+th{
+	background: lightgray;
+}
+
+img{
+	width:220px;
+	height:300px;
+}
+
+a{
+	text-decoration: none;
+	color:black;
+}
+
+a:hover{
+	text-decoration: underline;
+	color: green;
+}
+
+#productWrite {
+	text-align:right;
+}
+.todo-box {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+#wrap .todo-box .list tbody tr td a{
+	font-weight: border;
+	font-size:lager
+}
